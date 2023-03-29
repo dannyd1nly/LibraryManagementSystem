@@ -2,29 +2,31 @@
 #include <stdlib.h>
 #include <string.h>
 #include"project.h"
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
 int main() {
-	
-	printf("\t\t\t\t\t C - Project (Library Management System) \n \t\t\t\t\t Dnyaneshwar Chaudhary \n");
+	printf("\t\t\t\t     Welcome to C - Project (Library Management System) \n \t\t\t\t\t\t Dnyaneshwar Chaudhary \n");
+	printf("\t\t\t\t     -------------------------------------------------- ");
 	int n; //n represents no. of books
 	int k;
 	
 	char User[50];
 	int Pass;
-	printf("\n\n Please Enter the Username and Password to Login into the Management System \n");
 	
 	for (k=3;k>0;k--){
-		printf("\n\t\t\t Enter the Username (Alphabetic) : ");
+		char login[5];
+		printf("\n\n\t\t\t\tDo you Wish to Continue to the Login Area? (Yes/No) : ");
+		scanf("%s",&login);
+		
+		if(strcmp(login,"Yes")==0){
+		printf("\n\n\t\tPlease Enter the Username and Password to Login into the Management System\n");
+		printf("\n\t\t\t Enter the Username (Alphabetic Only) : ");
 		scanf("%s",&User);
-		printf("\n\t\t\t Enter the Password (Numeric) : ");
+		printf("\n\t\t\t Enter the Password (Numeric Only) : ");
 		scanf("%d",&Pass);
 			
-	
-		if (strcmp(User,"Dnyaneshwar")==0 && Pass == 26112001){
+		if(logininfo(User,Pass)==0){
 		
-		
-		printf("\n\n Enter the Number of Books = ");
+		printf("\n\n\t\t\t Please Enter Number of Books = ");
 		scanf("%d",&n); //Enter no. of books
 		book* b = (book*)malloc(sizeof(*b)*n); //defining an array of structure using malloc
 		int s,t,j=1,l;	
@@ -98,10 +100,13 @@ int main() {
 		else {
 			printf(" Wrong Username/Password Entered! You have %d Chances Left ",k-1);
 			if (k-1==0){
-				printf("\n \t \t Couldn't Login into the System\n \t \t You have exhausted your Chances \n \t \t Please Try Again ");
+				printf("\n\t\t Couldn't Login into the System\n\t\t You have exhausted your Chances \n\t\t Please Try Again ");
 			}
 		}
-		
-	}
+	}	
+		else {
+			break;
+		}
+	}	
 	return 0;
 }
