@@ -5,6 +5,7 @@ typedef struct book {
 	int price;
 }book;
 
+int logininfo(char*,int);
 void storebooks(book*,int);
 void displaybooks(book*,int);
 void searchbyname(book*,int);
