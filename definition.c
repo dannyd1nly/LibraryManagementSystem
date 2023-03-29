@@ -1,10 +1,11 @@
-  #include<stdio.h>
+#include<stdio.h>
 #include<string.h>
 #include"project.h"
 
 void storebooks(book* b, int n){
 	int i;
 	for(i=0;i<n;i++){
+	
 		printf("Enter Book %d Details : \n",i+1);
 		printf("Enter the name of the book : ");
 		scanf("%s",&b[i].name);
@@ -15,60 +16,93 @@ void storebooks(book* b, int n){
 		printf("Enter the Book Price : ");
 		scanf("%d",&b[i].price);
 		printf("\n");
+		
 	} 
 }
 
 void displaybooks(book* b, int n){
+	
 	int i;
 	for(i=0;i<n;i++){
-		
 		printf("Book %d Details  : \n",i+1);
-		printf("Enter the name of the book : %s\n",b[i].name);
-		printf("Enter the Book ID : %d\n",b[i].id);
-		printf("Enter the Book Author : %s\n",b[i].author);
-		printf("Enter the Book Price : %d\n",b[i].price);
+		printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+		printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[i].name,b[i].id,b[i].author,b[i].price);
 		printf("\n");
 	} 	
 }
 
 void searchbyname(book* b, int n){
+	
 		int j;
 		char searchbook[20];
-		printf("Enter the Book Name to Search : ");
+		printf(" Enter the Book Name to Search : ");
 		scanf("%s",&searchbook);
 			
+		int flg=0;
+		
 		for (j=0;j<n;j++){
 				if (strcmp(b[j].name,searchbook)==0){
-					printf("Book %d Details are :\n Name : %s\n Book ID : %d\n Author : %s\n Price : %d",j+1,b[j].name,b[j].id,b[j].author,b[j].price);
+					flg=1;
+					printf("\n Book %d Details  : \n",j+1);
+					printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+					printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[j].name,b[j].id,b[j].author,b[j].price);
+					printf("\n");
 				}
 		}
+		if (flg==0){
+			printf(" Wrong Name Entered! ");
+		}
+		
 }
 
 void searchbybookid(book* b, int n){
+	
 		int j;
 		int searchid;
-		printf("Enter the BookID to search : ");
+		int flg=0;
+		
+		printf(" Enter the BookID to search : ");
 			scanf("%d",&searchid);
 			for (j=0;j<n;j++){
 				if (b[j].id==searchid){
-					printf("Book %d Details are :\n Name : %s\n Book ID : %d\n Author : %s\n Price : %d",j+1,b[j].name,b[j].id,b[j].author,b[j].price);
+					flg=1;
+					printf("\n Book %d Details  : \n",j+1);
+					printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+					printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[j].name,b[j].id,b[j].author,b[j].price);
+					printf("\n");
 				}
 			}
-}
-
-void searchbyauthor(book* b, int n){
-		int j;
-		char searchauthor[20];
-		printf("Enter the Book Author to Search : ");
-			scanf("%s",&searchauthor);
-			for (j=0;j<n;j++){
-				if (strcmp(b[j].author,searchauthor)==0){
-					printf("Book %d Details are :\n Name : %s\n Book ID : %d\n Author : %s\n Price : %d",j+1,b[j].name,b[j].id,b[j].author,b[j].price);
-				}
+		if (flg==0){
+			printf(" Wrong ID Entered! ");
 		}
 }
 
+void searchbyauthor(book* b, int n){
+	
+		int j;
+		int flg=0;
+		char searchauthor[20];
+		
+		printf("Enter the Book Author to Search : ");
+		scanf("%s",&searchauthor);
+		
+		for (j=0;j<n;j++){
+			if (strcmp(b[j].author,searchauthor)==0){
+				flg=1;
+				printf("\n Book %d Details  : \n",j+1);
+				printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+				printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[j].name,b[j].id,b[j].author,b[j].price);
+				printf("\n");
+			}
+		}
+		if (flg==0){
+			printf(" Wrong Author Name Entered! ");
+		}
+		
+}
+
 void maxpricebook(book* b, int n){
+	
 		int u,j,max;
 		max = b[0].price;
 			for (j=0;j<n;j++){
@@ -78,10 +112,15 @@ void maxpricebook(book* b, int n){
 					}
 				}
 		printf("Maximum Price of book is : %d\n",max);
-		printf("Book %d Details are :\n Name : %s\n Book ID : %d\n Author : %s\n Price : %d",u+1,b[u].name,b[u].id,b[u].author,b[u].price);
+//		printf("Book %d Details are :\n Name : %s\n Book ID : %d\n Author : %s\n Price : %d",u+1,b[u].name,b[u].id,b[u].author,b[u].price);
+		printf("\n Book %d Details  : \n",u+1);
+		printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+		printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[u].name,b[u].id,b[u].author,b[u].price);
+		printf("\n");
 }
 
 void minpricebook(book* b, int n){
+	
 	int j,min,u;
 	min = b[0].price;
 	for (j=0;j<n;j++){
@@ -91,66 +130,53 @@ void minpricebook(book* b, int n){
 		}
 	}
 	printf("Minimum Price of book is : %d\n",min);
-	printf("Book %d Details are :\n Name : %s\n Book ID : %d\n Author : %s\n Price : %d",u+1,b[u].name,b[u].id,b[u].author,b[u].price);
+	printf("\n Book %d Details  : \n",u+1);
+	printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+	printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[u].name,b[u].id,b[u].author,b[u].price);
+	printf("\n");
 }
 
-// Was trying implementing the Sort by Name.
-//void sortbyname(book *b,int n){
-//	int j,l;
-//	book b1;
-//	for (j=0;j<n;j++){
-//		for (l=j+1;j<n;l++){
-//			if (strcmp(b[j].name,b[l].name)>0){
-//				strcpy(b1.name,b[j].name);
-//				strcpy(b[j].name,b[l].name);
-//				strcpy(b[l].name,b1.name);
-//			}
-//		}
-//	}
-//	printf("Sorted Names are : ");
-//	for (j=0;j<n;j++){
-//		printf("Details of %d book : ",j+1);
-//		printf("Name : %s\nID : %d\nAuthor : %s\nPrice : %d\n ",b[j].name,b[j].id,b[j].author,b[j].price);
-//		   }
-//}
-
 void sortbyprice(book* b,int n){
-	int j,sort,l;
+	int j,l;
+	book b4;
 	for(j=0;j<n;j++){
-		sort = 0;
 		for(l=j+1;l<n;l++){
 			if(b[j].price>b[l].price){
-					sort = b[j].price;
-					b[j].price = b[l].price;
-					b[l].price = sort;
+					b4 = b[j];
+					b[j] = b[l];
+					b[l] = b4;
 					}
 				}
 			}
 			
 		printf("Sorted Price : ");
 		for (j=0;j<n;j++){
-				printf("Details of %d book : ",j+1);
-				printf("Name : %s\nID : %d\nAuthor : %s\nPrice : %d\n ",b[j].name,b[j].id,b[j].author,b[j].price);
+				printf("\n Book %d Details  : \n",j+1);
+				printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+				printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[j].name,b[j].id,b[j].author,b[j].price);
+				printf("\n");
 		   }
 }
 
 void sortbyid(book* b,int n){
-	int j,sort,l;
+	int j,l;
+	book b5;
 	for(j=0;j<n;j++){
-		sort = 0;
 		for(l=j+1;l<n;l++){
 			if(b[j].id>b[l].id){
-					sort = b[j].id;
-					b[j].id = b[l].id;
-					b[l].id = sort;
+					b5 = b[j];
+					b[j]= b[l];
+					b[l] = b5;
 					}
 				}
 			}
 			
 		printf("Sorted ID : ");
 		for (j=0;j<n;j++){
-				printf("Details of %d book : ",j+1);
-				printf("Name : %s\nID : %d\nAuthor : %s\nPrice : %d\n ",b[j].name,b[j].id,b[j].author,b[j].price);
+				printf("\n Book %d Details  : \n",j+1);
+				printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+				printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[j].name,b[j].id,b[j].author,b[j].price);
+				printf("\n");
 		   }
 }
 
@@ -175,8 +201,10 @@ void updatebook(book* b, int n){
 	}
 	printf("Details of Updated Books are :\n ");
 	for (j=0;j<n;j++){
-				printf("Details of %d book :\n ",j+1);
-				printf("Name : %s\nID : %d\nAuthor : %s\nPrice : %d\n ",b[j].name,b[j].id,b[j].author,b[j].price);
+				printf("\n Book %d Details  : \n",j+1);
+				printf("\n\t\t\t Name \t\t ID \t\t Author \t Price \n");
+				printf("\n\t\t\t %s \t\t %d \t\t %s \t\t %d \n",b[j].name,b[j].id,b[j].author,b[j].price);
+				printf("\n");
 		   }	
 }
 
@@ -190,10 +218,12 @@ void insertbook(book* b, int n){
 	printf("Enter the Price : ");
 	scanf("%d",&b[n].price);
 	
+	printf("Success! Book Updated in System!");
+	
 }
 
 void deletebook(book* b, int n){
-	
+	printf("%d",n);
 	book b3;
 	printf("Enter the Book ID to Delete : ");
 	scanf("%d",&b3.id);
@@ -214,4 +244,16 @@ void deletebook(book* b, int n){
 	if (c==0){
 		printf(" \n Wrong Book Name Entered! \n ");
 	}	
+	else {
+		printf("Success! Book is deleted from System!");
+	}
+}
+
+int logininfo(char* user, int pass){
+	if(strcmp(user,"Dnyaneshwar")==0 && (pass = 26112001)){
+		return 0;
+	}
+	else {
+		return 1;
+	}
 }
